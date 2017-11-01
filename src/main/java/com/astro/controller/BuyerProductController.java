@@ -18,9 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by astro on 2017/10/24.
- */
+
 @RestController
 @RequestMapping("/buyer/product")
 public class BuyerProductController {
@@ -69,6 +67,8 @@ public class BuyerProductController {
 //        resultVO.setData(productVOList);
         return ResultVOUtil.success(productVOList);
 
+
     }
 
 }
+

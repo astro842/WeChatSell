@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
-/**
- * Created by astro on 2017/10/28.
- */
+
 @Entity
 @Data
 public class OrderDetail {
@@ -27,6 +25,9 @@ public class OrderDetail {
     private Integer productQuantity;
     /* 商品小图 */
     private String productIcon;
+
+    //删除
+    private String str;
 
 
 }
