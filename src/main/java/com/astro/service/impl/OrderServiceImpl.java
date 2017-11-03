@@ -2,21 +2,29 @@ package com.astro.service.impl;
 
 import com.astro.Util.KeyUtil;
 import com.astro.dataobject.OrderDetail;
+import com.astro.dataobject.OrderMaster;
 import com.astro.dataobject.ProductInfo;
+import com.astro.dto.CartDTO;
 import com.astro.dto.OrderDTO;
 import com.astro.enums.ResultEnum;
 import com.astro.exception.SellException;
 import com.astro.repository.OrderDetailRepository;
+import com.astro.repository.OrderMasterRepository;
 import com.astro.service.OrderService;
 import com.astro.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by astro on 2017/10/31.
@@ -30,10 +38,14 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDetailRepository orderDetailRepository;
 
+    @Autowired
+    private OrderMasterRepository orderMasterRepository;
+
     String OrderId=KeyUtil.genUniqueKey();
     BigDecimal orderAmount=new BigDecimal(BigInteger.ZERO);
 
      @Override
+     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
         //1.查询商品
          for (OrderDetail orderDetail:orderDTO.getOrderDetailList()){
@@ -50,15 +62,22 @@ public class OrderServiceImpl implements OrderService {
              //订单详情
             orderDetail.setDetailId(KeyUtil.genUniqueKey());
             orderDetail.setOrderId(OrderId);
-             BeanUtils.copyProperties(productInfo,orderDetail);
-             orderDetailRepository.save(orderDetail);
-
-
-
-             //4.扣库存
-
+            BeanUtils.copyProperties(productInfo,orderDetail);
+            orderDetailRepository.save(orderDetail);
          }
-        return null;
+         //写入orderMaster
+         OrderMaster orderMaster=new OrderMaster();
+         orderMaster.setOrderId(OrderId);
+         orderMaster.setOrderAmount(orderAmount);
+         BeanUtils.copyProperties(orderDTO,orderMaster);
+         orderMasterRepository.save(orderMaster);
+
+         //4.扣库存
+         List<CartDTO> cartDTOList=orderDTO.getOrderDetailList().stream().map(e -> new CartDTO(e.getProductId(),
+                 e.getProductQuantity())).collect(Collectors.toList());
+         productService.decreaseStock(cartDTOList);
+
+        return orderDTO;
     }
 
     @Override
