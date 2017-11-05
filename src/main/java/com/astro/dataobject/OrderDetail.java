@@ -27,7 +27,7 @@ public class OrderDetail {
     private String productIcon;
 
     //删除
-    private String str;
+    //private String str;
 
 
 }
