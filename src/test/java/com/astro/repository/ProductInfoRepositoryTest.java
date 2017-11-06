@@ -26,8 +26,8 @@ public class ProductInfoRepositoryTest {
     @Test
    public void saveTest(){
         ProductInfo productInfo=new ProductInfo();
-        productInfo.setProductId("156");
-        productInfo.setProductName("皮蛋瘦肉粥");
+        productInfo.setProductId("123");
+        productInfo.setProductName("苹果");
         productInfo.setProductPrice(new BigDecimal(3.2));
         productInfo.setProductStock(100);
         productInfo.setProductDescription("好吃");

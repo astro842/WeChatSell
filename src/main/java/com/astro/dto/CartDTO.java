@@ -1,15 +1,16 @@
 package com.astro.dto;
 
-//购物车
-
 import lombok.Data;
 
+/**
+ * Created by astro on 2017/11/5.
+ */
 @Data
 public class CartDTO {
 
-        private String productId;
+    private  String productId;
 
-        private Integer productQuantity;
+    private Integer productQuantity;
 
     public CartDTO(String productId, Integer productQuantity) {
         this.productId = productId;

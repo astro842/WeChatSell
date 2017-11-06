@@ -19,7 +19,7 @@ import java.util.List;
  * Created by astro on 2017/10/24.
  */
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository repository;
@@ -53,18 +53,18 @@ public class ProductServiceImpl implements ProductService{
     @Override
     @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
-        for (CartDTO cartDTO:cartDTOList){
+        for (CartDTO cartDTO : cartDTOList) {
             ProductInfo productInfo=repository.findOne(cartDTO.getProductId());
-        if (productInfo == null){
-            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
-        }
+            if (productInfo == null){
+                throw  new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
             Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
             if (result < 0){
                 throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
             }
             productInfo.setProductStock(result);
+
             repository.save(productInfo);
         }
-
     }
 }
