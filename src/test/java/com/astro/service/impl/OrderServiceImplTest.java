@@ -4,6 +4,7 @@ import com.astro.dataobject.OrderDetail;
 import com.astro.dto.OrderDTO;
 import com.astro.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class OrderServiceImplTest {
     private OrderServiceImpl orderService;
 
     private final String OPENID="10929090";
-
+    private  final String orderid="1509876163808659307";
 
     @Test
     public void create() throws Exception {
@@ -60,6 +61,11 @@ public class OrderServiceImplTest {
 
     @Test
     public void findOne() throws Exception {
+        OrderDTO orderDTO = orderService.findOne(orderid);
+
+        log.info("查询单个订单：orderDTO{}",orderDTO);
+        Assert.assertEquals(orderid,orderDTO.getOrderId());
+
     }
 
     @Test
