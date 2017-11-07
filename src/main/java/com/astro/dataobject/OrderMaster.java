@@ -37,9 +37,7 @@ public class OrderMaster {
     /*支付状态*/
     private Integer payStatus= PayStatusEnum.WAIT.getCode();
 
-    private Date createTime;
 
-    private Date updateTime;
 
 //    @Transient
 //    private List<OrderDetail> orderDetailList;
