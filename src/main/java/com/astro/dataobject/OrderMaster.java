@@ -1,9 +1,12 @@
 package com.astro.dataobject;
 
+import com.astro.Util.Date2LongSerializer;
 import com.astro.enums.OrderStatusEnum;
 import com.astro.enums.PayStatusEnum;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -38,6 +41,12 @@ public class OrderMaster {
     private Integer payStatus= PayStatusEnum.WAIT.getCode();
 
 
+    /** 创建时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
+    private Date createTime;
+    @JsonSerialize(using = Date2LongSerializer.class)
+    /** 更新时间. */
+    private Date updateTime;
 
 //    @Transient
 //    private List<OrderDetail> orderDetailList;
