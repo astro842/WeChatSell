@@ -84,6 +84,14 @@ public class OrderServiceImplTest {
     }
 
     @Test
+    public void allList() throws Exception {
+
+        Pageable request=new PageRequest(0,2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(request);
+        assertNotEquals(0,orderDTOPage.getTotalElements());
+    }
+
+    @Test
     public void cancel() throws Exception {
         OrderDTO orderDTO=orderService.findOne(orderid);
         OrderDTO cancel = orderService.cancel(orderDTO);

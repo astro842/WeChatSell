@@ -9,4 +9,4 @@ spring:
   jpa:
     show-sql: true
 server:
-  context-path: /sell
+   context-path: /sell

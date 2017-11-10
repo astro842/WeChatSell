@@ -1,8 +1,10 @@
 package com.astro.dataobject;
 
 import com.astro.Util.Date2LongSerializer;
+import com.astro.Util.EnumUtil;
 import com.astro.enums.OrderStatusEnum;
 import com.astro.enums.PayStatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
@@ -48,8 +50,16 @@ public class OrderMaster {
     /** 更新时间. */
     private Date updateTime;
 
-//    @Transient
-//    private List<OrderDetail> orderDetailList;
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum(){
+
+        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum(){
+        return EnumUtil.getByCode(payStatus,PayStatusEnum.class);
+    }
 
 }
 
