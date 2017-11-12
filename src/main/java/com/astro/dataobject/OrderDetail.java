@@ -26,8 +26,7 @@ public class OrderDetail {
     /* 商品小图 */
     private String productIcon;
 
-    //删除
-    //private String str;
+
 
 
 }

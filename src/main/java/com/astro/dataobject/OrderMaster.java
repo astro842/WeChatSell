@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by astro on 2017/10/28.
@@ -45,14 +44,15 @@ public class OrderMaster {
 
     /** 创建时间. */
     @JsonSerialize(using = Date2LongSerializer.class)
+
     private Date createTime;
     @JsonSerialize(using = Date2LongSerializer.class)
     /** 更新时间. */
+
     private Date updateTime;
 
     @JsonIgnore
     public OrderStatusEnum getOrderStatusEnum(){
-
         return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
     }
 

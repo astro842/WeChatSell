@@ -8,6 +8,7 @@ import com.astro.dto.OrderDTO;
 import com.astro.enums.ResultEnum;
 import com.astro.exception.SellException;
 import com.astro.form.OrderForm;
+import com.astro.service.BuyerService;
 import com.astro.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private BuyerService buyerService;
 
     //创建订单
     @RequestMapping("/create")
@@ -84,9 +88,9 @@ public class BuyerOrderController {
     public ResultVO<List<OrderDetail>> detail(@RequestParam("openid") String openid,
                                               @RequestParam("orderid") String orderid){
 
-        //TODO 不安全 为验证opendid
-        OrderDTO orderDTO = orderService.findOne(orderid);
-        return ResultVOUtil.success(orderDTO);
+        OrderDTO orderOne = buyerService.findOrderOne(openid, orderid);
+
+        return ResultVOUtil.success(orderOne);
     }
 
 
@@ -94,10 +98,7 @@ public class BuyerOrderController {
     @PostMapping("/cancle")
     public ResultVO cancle(@RequestParam("openid") String openid,
                                               @RequestParam("orderid") String orderid){
-
-        //TODO 不安全 为验证opendid
-        OrderDTO orderDTO = orderService.findOne(orderid);
-        orderService.cancel(orderDTO);
+        buyerService.CancelOrder(openid,orderid);
         return ResultVOUtil.success();
     }
 }
