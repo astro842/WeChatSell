@@ -25,6 +25,7 @@ public enum ResultEnum {
     ORDER_OWNER_ERROR(19,"该订单不属于当前用户"),
 
     ORDER_CANCEL_SUCCESS(20,"订单取消成功"),
+    ORDER_FINISH_SUCCESS(21,"完结订单成功"),
     ;
 
     private Integer code;

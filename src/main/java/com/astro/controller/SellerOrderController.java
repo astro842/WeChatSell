@@ -1,6 +1,7 @@
 package com.astro.controller;
 
 
+import com.astro.dataobject.OrderDetail;
 import com.astro.dto.OrderDTO;
 import com.astro.enums.ResultEnum;
 import com.astro.exception.SellException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -54,7 +56,7 @@ public class SellerOrderController {
             orderService.cancel(orderDTO);
 
         }catch (SellException e){
-            log.error("【买家端取消订单】发生异常{}",e);
+            log.error("【卖家端取消订单】发生异常{}",e);
             map.put("msg", e.getMessage());
             map.put("url","/sell/seller/order/list");
             return new ModelAndView("common/error",map);
@@ -65,5 +67,44 @@ public class SellerOrderController {
         return new ModelAndView("common/success",map);
     }
 
+    @GetMapping("/detail")
+    public ModelAndView detail(@RequestParam("orderid") String orderId,
+                               Map<String,Object> map){
+        OrderDTO orderDTO=new OrderDTO();
+        try {
+            orderDTO = orderService.findOne(orderId);
+
+        }catch (SellException e){
+                log.error("【卖家端查询订单详情】 发生异常{}",e);
+                map.put("msg",e.getMessage());
+                map.put("url","/sell/seller/order/list");
+             return new ModelAndView("common/error",map);
+        }
+        map.put("orderDTO",orderDTO);
+        ModelAndView model=new ModelAndView("order/detail",map);
+
+        return model;
+    }
+
+    @GetMapping("/finish")
+    public ModelAndView finish(@RequestParam("orderid") String orderId,
+                               Map<String,Object> map){
+        OrderDTO orderDTO=new OrderDTO();
+        try {
+            orderDTO = orderService.findOne(orderId);
+            OrderDTO finish = orderService.finish(orderDTO);
+
+        }catch (SellException e){
+            log.error("【卖家端完结订单】 发生异常{}",e);
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/order/list");
+            return new ModelAndView("common/error",map);
+        }
+        map.put("msg",ResultEnum.ORDER_FINISH_SUCCESS.getMsg());
+        map.put("url","/sell/seller/order/list");
+        ModelAndView model=new ModelAndView("common/success",map);
+
+        return model;
+    }
 
 }
