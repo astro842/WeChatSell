@@ -3,6 +3,7 @@ package com.astro.controller;
 
 import com.astro.dataobject.ProductInfo;
 import com.astro.dto.OrderDTO;
+import com.astro.exception.SellException;
 import com.astro.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,8 +35,38 @@ public class SellerProductController {
         map.put("productInfos",productInfos);
         map.put("currentPage",page);
 
-        ModelAndView model=new ModelAndView("seller/list",map);
+        ModelAndView model=new ModelAndView("product/list",map);
         return model;
+
+    }
+
+    @GetMapping("/onsale")
+    public ModelAndView onSale(@RequestParam("productid") String productId,
+                               Map<String,Object> map){
+        try {
+            productService.onSale(productId);
+        }catch (SellException e){
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("common/error");
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("common/success",map);
+
+    }
+
+    @GetMapping("/offsale")
+    public ModelAndView offSale(@RequestParam("productid") String productId,
+                               Map<String,Object> map){
+        try {
+            productService.offSale(productId);
+        }catch (SellException e){
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("common/error");
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("common/success",map);
 
     }
 

@@ -17,7 +17,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h4>
                             success!
-                        </h4> <strong>${msg}</strong> <a href="${url}" class="alert-link">3秒后自动跳转</a>
+                        </h4> <strong>${msg!"成功"}</strong> <a href="${url}" class="alert-link">3秒后自动跳转</a>
                     </div>
                 </div>
             </div>

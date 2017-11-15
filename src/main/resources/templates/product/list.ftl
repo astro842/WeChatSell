@@ -25,24 +25,28 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#list orderDTOPage.content as orderDTO>
+                        <#list productInfos.content as product>
                         <tr>
-                            <td>${productInfos.productId}</td>
-                            <td>${productInfos.productName}</td>
-                            <td>${productInfos.productPrice}</td>
-                            <td>${productInfos.productStock}</td>
-                            <td>${productInfos.productDescription}</td>
-                            <td>${productInfos.productIcon}</td>
-                            <td>${productInfos.productStatus}</td>
-                            <td>${productInfos.categoryType}</td>
+                            <td>${product.productId}</td>
+                            <td>${product.productName}</td>
+                            <td><img height="100" width="100" src="${product.productIcon}"></td>
+                            <td>${product.productPrice}</td>
+                            <td>${product.productStock}</td>
+                            <td>${product.productDescription}</td>
+                            <td>${product.categoryType}</td>
+                            <td>${product.createTime}</td>
+                            <td>${product.updateTime}</td>
 
                             <td>
-                                <a href="/sell/seller/order/detail?orderid=${orderDTO.orderId}">详情</a>
+                                <a href="/sell/seller/product/index?productId=${product.productId}">修改</a>
                             </td>
                             <td>
-                                <#if  orderDTO.getOrderStatusEnum().getMsg() == "新订单">
-                                    <a href="/sell/seller/order/cancel?orderid=${orderDTO.orderId}">取消</a>
+                                <#if  product.getProductStatusEnum().getMsg() == "在架">
+                                    <a href="/sell/seller/product/offsale?productid=${product.productId}">下架</a>
+                                <#else >
+                                    <a href="/sell/seller/product/onsale?productid=${product.productId}">上架</a>
                                 </#if>
+
                             </td>
 
 
@@ -57,19 +61,19 @@
                     <#if currentPage lte 1>
                         <li class="disabled"><a href="#">上一页</a></li>
                     <#else>
-                        <li><a href="/sell/seller/order/list?page=${currentPage -1}">上一页</a></li>
+                        <li><a href="/sell/seller/product/list?page=${currentPage -1}">上一页</a></li>
                     </#if>
 
-                    <#list  1..orderDTOPage.getTotalPages() as index>
+                    <#list  1..productInfos.getTotalPages() as index>
                         <#if currentPage == index>
                             <li class="disabled"><a href="#">${index}</a></li>
 
                         <#else>
-                            <li><a href="/sell/seller/order/list?page=${index}">${index}</a></li>
+                            <li><a href="/sell/seller/product/list?page=${index}">${index}</a></li>
                         </#if>
                     </#list>
 
-                    <#if currentPage gte orderDTOPage.getTotalPages()>
+                    <#if currentPage gte productInfos.getTotalPages()>
                         <li class="disabled"><a href="#">下一页</a></li>
                     <#else>
                         <li><a href="/sell/seller/order/list?page=${currentPage +1 }">下一页</a></li>

@@ -1,6 +1,7 @@
 package com.astro.service.impl;
 
 import com.astro.dataobject.ProductInfo;
+import com.astro.enums.ProductStatusEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,6 +62,13 @@ public class ProductServiceImplTest {
 
         ProductInfo save = productService.save(productInfo);
         Assert.assertNotNull(save);
+    }
+
+    @Test
+    public void onSale() throws Exception{
+        //ProductInfo productInfo = productService.findOne("1");
+        ProductInfo productInfo = productService.onSale("1");
+        Assert.assertEquals(ProductStatusEnum.UP.getCode(),productInfo.getProductStatus());
     }
 
 }
