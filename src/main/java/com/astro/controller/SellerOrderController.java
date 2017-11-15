@@ -42,6 +42,7 @@ public class SellerOrderController {
         Page<OrderDTO> orderDTOPage = orderService.findList(pageable);
         map.put("orderDTOPage",orderDTOPage);
         map.put("currentPage",page);
+
         ModelAndView model=new ModelAndView("order/list",map);
         return model;
 

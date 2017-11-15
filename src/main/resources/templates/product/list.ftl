@@ -12,28 +12,30 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>订单ID</th>
-                            <th>姓名</th>
-                            <th>手机号</th>
-                            <th>地址</th>
-                            <th>金额</th>
-                            <th>订单状态</th>
-                            <th>支付状态</th>
+                            <th>商品id</th>
+                            <th>名称</th>
+                            <th>图片</th>
+                            <th>单价</th>
+                            <th>库存</th>
+                            <th>描述</th>
+                            <th>类目</th>
                             <th>创建时间</th>
+                            <th>修改时间</th>
                             <th colspan="2">操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <#list orderDTOPage.content as orderDTO>
                         <tr>
-                            <td>${orderDTO.orderId}</td>
-                            <td>${orderDTO.buyerName}</td>
-                            <td>${orderDTO.buyerPhone}</td>
-                            <td>${orderDTO.buyerAddress}</td>
-                            <td>${orderDTO.orderAmount}</td>
-                            <td>${orderDTO.getOrderStatusEnum().msg}</td>
-                            <td>${orderDTO.getPayStatusEnum().msg}</td>
-                            <td>${orderDTO.createTime}</td>
+                            <td>${productInfos.productId}</td>
+                            <td>${productInfos.productName}</td>
+                            <td>${productInfos.productPrice}</td>
+                            <td>${productInfos.productStock}</td>
+                            <td>${productInfos.productDescription}</td>
+                            <td>${productInfos.productIcon}</td>
+                            <td>${productInfos.productStatus}</td>
+                            <td>${productInfos.categoryType}</td>
+
                             <td>
                                 <a href="/sell/seller/order/detail?orderid=${orderDTO.orderId}">详情</a>
                             </td>
