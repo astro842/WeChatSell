@@ -26,10 +26,10 @@ public class ProductInfo {
     private Integer productStock;
     private String productDescription;
     private String productIcon;
-    private Integer productStatus;
+    private Integer productStatus = ProductStatusEnum.UP.getCode();
     private Integer categoryType;
-//    private Date createTime;
-//    private Date updateTime;
+    private Date createTime;
+    private Date updateTime;
 
     @JsonIgnore
     public ProductStatusEnum getProductStatusEnum(){

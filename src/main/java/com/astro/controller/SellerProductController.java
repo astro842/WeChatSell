@@ -2,6 +2,7 @@ package com.astro.controller;
 
 
 import ch.qos.logback.classic.Logger;
+import com.astro.Util.KeyUtil;
 import com.astro.dataobject.ProductCategory;
 import com.astro.dataobject.ProductInfo;
 import com.astro.dto.OrderDTO;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -111,12 +113,18 @@ public class SellerProductController {
           log.error("出错....{}",bindingResult.getFieldError().getDefaultMessage());
           return new ModelAndView("common/error", map);
       }
-
-       // ProductInfo productInfo = productService.findOne(form.getProductId());
         ProductInfo productInfo=new ProductInfo();
-        BeanUtils.copyProperties(form,productInfo);
-      try {
 
+      try {
+          if (!StringUtils.isEmpty((form.getProductId()).trim())){
+              productInfo = productService.findOne(form.getProductId());
+          }else {
+              form.setProductId(KeyUtil.genUniqueKey());
+          }
+
+          BeanUtils.copyProperties(form,productInfo);
+          productInfo.setCreateTime(new Date());
+          productInfo.setUpdateTime(new Date());
           productService.save(productInfo);
       }catch (SellException e){
           map.put("msg",e.getMessage());
@@ -127,4 +135,6 @@ public class SellerProductController {
         map.put("url","/sell/seller/product/list");
         return new ModelAndView("common/success",map);
     }
+
+
 }

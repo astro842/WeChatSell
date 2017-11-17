@@ -12,22 +12,22 @@
                     <form  role="form" method="post" action="/sell/seller/product/save">
                         <div class="form-group">
                             <label >名称</label>
-                            <input name="productName" type="text" class="form-control" value=" ${(productinfo.productName)!" "}" />
+                            <input name="productName" type="text" class="form-control" value=" ${(productinfo.productName)!''}" />
                         </div>
 
                         <div class="form-group">
                             <label >价格</label>
-                            <input name="productPrice" type="text" class="form-control" value=" ${(productinfo.productPrice)!" "}" />
+                            <input name="productPrice" type="number" class="form-control" value="${(productinfo.productPrice)!''}" />
                         </div>
 
                         <div class="form-group">
                             <label >库存</label>
-                            <input name="productStock" type="text" class="form-control" value=" ${(productinfo.productStock)!" "}" />
+                            <input name="productStock" type="number" class="form-control" value="${(productinfo.productStock)!''}"  />
                         </div>
 
                         <div class="form-group">
                             <label >描述</label>
-                            <input name="productDescription" type="text" class="form-control" value=" ${(productinfo.productDescription)!" "}" />
+                            <input name="productDescription" type="text" class="form-control" value="${(productinfo.productDescription)!" "}" />
                         </div>
 
                         <div class="form-group">

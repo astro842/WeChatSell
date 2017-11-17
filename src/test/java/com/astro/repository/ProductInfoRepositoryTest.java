@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -27,13 +28,15 @@ public class ProductInfoRepositoryTest {
    public void saveTest(){
         ProductInfo productInfo=new ProductInfo();
         productInfo.setProductId("123");
-        productInfo.setProductName("苹果");
+        productInfo.setProductName("香蕉");
         productInfo.setProductPrice(new BigDecimal(3.2));
         productInfo.setProductStock(100);
         productInfo.setProductDescription("好吃");
         productInfo.setProductIcon("http:///12312");
         productInfo.setProductStatus(0);
         productInfo.setCategoryType(1);
+        productInfo.setCreateTime(new Date());
+        productInfo.setUpdateTime(new Date());
 
         ProductInfo save = repository.save(productInfo);
         Assert.assertNotNull(save);
