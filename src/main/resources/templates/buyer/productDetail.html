@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
+    <title>WeUI</title>
+    <!-- 引入 WeUI -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css"></link>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css"></link>
+    <style>
+        .demos-title {
+            font-size: 34px;
+            color: #3cc51f;
+            font-weight: 400;
+            margin: 0 15%;
+        }
+
+        span {
+            font-size: 14px;
+            margin: 0 35%;
+        }
+
+        .btng {
+            position: fixed;
+            bottom: 0;
+            width: 50%
+        }
+
+        .btnr {
+            width: 50%;
+            bottom: 0;
+            right: 0;
+            position: fixed;
+        }
+
+        .pp {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="weui-tab">
+    <img class='pp' src="/sell/images/pic_article.png" alt=""/>
+    <header>
+        <h1 class="demos-title"></h1>
+        <span class="productStock">库存：</span>
+        <div class="weui-panel__hd proCategory">商品种类：</div>
+        <div class="weui-panel__hd proDec" >商品介绍：</div>
+    </header>
+    <a href="javascript:;" class=" weui-btn_disabled weui-btn weui-btn_primary btng price"></a>
+    <a href="javascript:;" class="weui-btn weui-btn_warn btnr addCar" >加入购物车</a>
+
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p >选择购买数量</p>
+            </div>
+            <div class="weui-cell__ft">
+                <div class="weui-count">
+                    <a class="weui-count__btn weui-count__decrease"></a>
+                    <input class="weui-count__number selectNum" type="number" value="1" />
+                    <a class="weui-count__btn weui-count__increase"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- body 最后 -->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
+    <script type='text/javascript' src='/sell/js/productDetail.js' charset='utf-8'></script>
+    <script type='text/javascript' src='/sell/js/common.js' charset='utf-8'></script>
+
+</body>
+
+</html>

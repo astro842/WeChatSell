@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
+    <title>WeUI</title>
+    <!-- 引入 WeUI -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css"></link>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css"></link>
+    <style>
+        .demos-title {
+            text-align: center;
+        font-size: 34px;
+        color: #3cc51f;
+        font-weight: 400;
+        margin: 0 15%;
+    }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%
+        }
+
+        .pp {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="weui-tab">
+
+    <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+            <div class="weui-panel weui-panel_access">
+                <img class='pp' src="/sell/images/my/head.jpeg" alt="" />
+                <div class="weui-panel__hd">欢迎光临</div>
+                <div class="weui-panel__bd proList">
+                    <div class="row">
+
+                    </div>
+                    <!--<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">-->
+                        <!--<div class="weui-media-box__hd">-->
+                            <!--<img class="weui-media-box__thumb" src="/sell/images/my/p1.jpg"/>-->
+                        <!--</div>-->
+                        <!--<div class="weui-media-box__bd">-->
+                            <!--<h4 class="weui-media-box__title">手撕鸡</h4>-->
+                            <!--<p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>-->
+                        <!--</div>-->
+                    <!--</a>-->
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+            <!--<div class="weui-search-bar" id="searchBar">-->
+                <!--<form class="weui-search-bar__form">-->
+                    <!--<div class="weui-search-bar__box">-->
+                        <!--<i class="weui-icon-search"></i>-->
+                        <!--<input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="" />-->
+                        <!--<a href="javascript:" class="weui-icon-clear" id="searchClear"></a>-->
+                    <!--</div>-->
+                    <!--<label class="weui-search-bar__label" id="searchText">-->
+                        <!--<i class="weui-icon-search"></i>-->
+                        <!--<span>搜索</span>-->
+                    <!--</label>-->
+                <!--</form>-->
+                <!--<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>-->
+            <!--</div>-->
+            <h1 class="demos-title">搜索</h1>
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="picker" class="weui-label">种类</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="picker" type="text" value="" readonly="" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="tab3" class="weui-tab__bd-item">
+            <h1>hello world</h1>
+        </div>
+
+        <div class="weui-tabbar footer">
+            <a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
+                <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;"></span>-->
+                <div class="weui-tabbar__icon">
+                    <img src="/sell/images/icon_nav_button.png" alt=""/>
+                </div>
+                <p class="weui-tabbar__label">微信</p>
+            </a>
+
+            <a href="#tab2" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="/sell/images/icon_nav_article.png" alt=""/>
+                </div>
+                <p class="weui-tabbar__label">发现</p>
+            </a>
+            <a href="#tab3" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="/sell/images/icon_nav_cell.png" alt=""/>
+                </div>
+                <p class="weui-tabbar__label">我</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+    <!-- body 最后 -->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
+    <script type='text/javascript' src='/sell/js/index.js' charset='utf-8'></script>
+    <script>   $("#picker").picker({
+    title: "选择商品种类",
+    cols: [{
+        textAlign: 'center',
+        values: ['iPhone 4', 'iPhone 4S', 'iPhone 5', 'iPhone 5S', 'iPhone 6', 'iPhone 6 Plus', 'iPad 2', 'iPad Retina', 'iPad Air', 'iPad mini', 'iPad mini 2', 'iPad mini 3']
+    }]
+});</script>
+</body>
+
+</html>

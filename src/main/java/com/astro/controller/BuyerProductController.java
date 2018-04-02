@@ -10,13 +10,16 @@ import com.astro.service.CategoryService;
 import com.astro.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -68,6 +71,15 @@ public class BuyerProductController {
         return ResultVOUtil.success(productVOList);
 
 
+    }
+
+    @GetMapping("/detail")
+    public ResultVO productDetail(@RequestParam(value = "id",required =true) String productId){
+        ProductInfo productInfo=null;
+        if(! StringUtils.isEmpty(productId)){
+            productInfo = productService.findOne(productId);
+        }
+        return ResultVOUtil.success(productInfo);
     }
 
 }
