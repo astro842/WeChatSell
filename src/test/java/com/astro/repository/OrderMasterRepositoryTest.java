@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -26,14 +28,16 @@ public class OrderMasterRepositoryTest {
 
 
     @Test
-    public void saveTest(){
-        OrderMaster orderMaster=new OrderMaster();
-        orderMaster.setOrderId("200");
-        orderMaster.setBuyerName("小文");
-        orderMaster.setBuyerPhone("110333");
-        orderMaster.setBuyerAddress("北京");
-        orderMaster.setBuyerOpenid("123");
-        orderMaster.setOrderAmount(new BigDecimal(3.2));
+    public void saveTest() {
+        OrderMaster orderMaster = new OrderMaster();
+        orderMaster.setOrderId("20012");
+        orderMaster.setBuyerName("小文12");
+        orderMaster.setBuyerPhone("11033312");
+        orderMaster.setBuyerAddress("北京12");
+        orderMaster.setBuyerOpenid("12312");
+        orderMaster.setOrderAmount(new BigDecimal(31.2));
+//        orderMaster.setCreateTime(new Date());
+//        orderMaster.setUpdateTime(new Date());
 
         OrderMaster save = repository.save(orderMaster);
         Assert.assertNotNull(save);
@@ -42,9 +46,21 @@ public class OrderMasterRepositoryTest {
 
     @Test
     public void findByBuyerOpenid() throws Exception {
-        PageRequest request=new PageRequest(0,2);
+        PageRequest request = new PageRequest(0, 2);
         Page<OrderMaster> page = repository.findByBuyerOpenid("110110", request);
         System.out.println(page.getTotalElements());
     }
 
+    @Test
+    public void find() throws Exception {
+        OrderMaster master = repository.findByOrderId("1524558649613875314");
+        System.out.println(master);
+    }
+
+    @Test
+    public void getbyopenid() throws Exception {
+        List<OrderMaster> list = repository.findByBuyerOpenid("oXFU40-wU6UVQCjd511kEMPiyAR4");
+        System.out.println(list.size());
+        System.out.println(list);
+    }
 }

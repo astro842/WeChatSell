@@ -10,3 +10,15 @@ spring:
 server:
    context-path: /sell
    port: 8080
+
+weChat:
+ myAppId: wx3c64c76a13e70aaf
+ myAppSecret: c5e7f39c0f35826f030dff6ad35c5499
+
+ # mybatis
+mybatis:
+        typeAliasesPackage: com.astro.repository
+        configuration:
+                    map-underscore-to-camel-case: true
+                    default-fetch-size: 100
+                    default-statement-timeout: 3000

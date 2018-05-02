@@ -31,4 +31,7 @@ public interface ProductService {
 
     ProductInfo onSale(String proudctId);
     ProductInfo offSale(String proudctId);
+
+
+
 }

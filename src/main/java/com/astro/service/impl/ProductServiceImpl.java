@@ -6,6 +6,7 @@ import com.astro.enums.ProductStatusEnum;
 import com.astro.enums.ResultEnum;
 import com.astro.exception.SellException;
 import com.astro.repository.ProductInfoRepository;
+import com.astro.dataobject.ProductMapper;
 import com.astro.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository repository;
+
 
     @Override
     public ProductInfo findOne(String productId) {
@@ -105,4 +107,6 @@ public class ProductServiceImpl implements ProductService {
 
         return repository.save(productInfo);
     }
+
+
 }

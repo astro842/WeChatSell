@@ -44,8 +44,8 @@ public class OrderMaster {
 
     /** 创建时间. */
     @JsonSerialize(using = Date2LongSerializer.class)
-
     private Date createTime;
+
     @JsonSerialize(using = Date2LongSerializer.class)
     /** 更新时间. */
 

@@ -1,6 +1,7 @@
 /**
  *
  */
+
 Date.prototype.Format = function(fmt) {
     var o = {
         "M+" : this.getMonth() + 1, // 月份
@@ -33,4 +34,7 @@ function getQueryString(name) {
 function changeVerifyCode(img) {
     img.src = "../Kaptcha?" + Math.floor(Math.random() * 100);
 }
+
+
+
 

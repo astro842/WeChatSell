@@ -71,4 +71,6 @@ public class ProductServiceImplTest {
         Assert.assertEquals(ProductStatusEnum.UP.getCode(),productInfo.getProductStatus());
     }
 
+
+
 }

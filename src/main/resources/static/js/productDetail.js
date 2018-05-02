@@ -8,8 +8,10 @@ $(function () {
      console.log("detailpage");
      var productId=getQueryString("id");
      var url = '/sell/buyer/product/detail?id='+productId;
-     var oneProduct=new Object();
      var productPrice;
+     var productListKey='__produstList';
+
+     var addCarUrl='/sell/buyer/addcar';
 
     $.getJSON(url, function (data) {
         console.log(data);
@@ -19,26 +21,65 @@ $(function () {
         var productStock=product.productStock;
         var productDec=product.productDescription;
          productPrice=product.productPrice;
+        var productIcon=product.productIcon;
+
+        var productIconHtml='';
+            productIconHtml=''+'<img class="pp" src="'+productIcon+'" alt=""/>';
 
         $('.demos-title').html(productName);
         $('.proCategory').append(productCategory);
         $('.productStock').append(productStock);
         $('.proDec').append(productDec);
         $('.price').html("单价："+productPrice);
+        $('.heimg').html(productIconHtml);
 
     });
 
-    $('.addCar').click(function(e) {
-        oneProduct.productId=productId;
-        oneProduct.productNum=$('.selectNum').val();
-        console.log(oneProduct.productId);
-        console.log(oneProduct.productNum);
-        $.toast("操作成功");
-        setTimeout(function () {
-            window.location.href="/sell/index/index";
-        },1000);
+    $('.addCar').click(function() {
+       // localStorage.setItem(productListKey, JSON.stringify(producList))
+
+        var productNum= $(".selectNum").val();
+        var addOneCarUrl=addCarUrl+"?productId="+productId+"&productNum="+productNum;
+        console.log("productId:"+productId);
+        console.log("prodctNum:"+productNum);
+        $.getJSON(addOneCarUrl, function (data) {
+            if(data.code==0){
+                console.log("操作成功");
+                              $.toast("操作成功");
+                            setTimeout(function () {
+                                //window.location.href="/sell/index/index";
+                                window.history.go(-1);
+                            },1000);
+            }
+
+        });
+
+
+        // $.ajax({
+        //     url: createOrder,
+        //     type: 'POST',
+        //     data: ,
+        //     contentType: false,
+        //     processData: false,
+        //     cache: false,
+        //     success: function (data) {
+        //         if (data.code == 0) {
+        //             console.log("操作成功");
+        //               $.toast("操作成功");
+        //             setTimeout(function () {
+        //                 //window.location.href="/sell/index/index";
+        //                 window.history.go(-1);
+        //             },1000);
+        //         } else {
+        //
+        //         }
+        //     }
+        // });
+
+
 
     });
+
 
     $('.weui-count__decrease').click(function(e) {
         var $input = $(e.currentTarget).parent().find('.weui-count__number');
